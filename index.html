@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venta de Boletos de Colectivos</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Incluye Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Venta de Boletos de Colectivos</h1>
+        <div>
+            <img src="imagenes/logo-empresa.webp" alt="logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="boletos.html">Boletos</a></li>
+                <li><a href="quienes-somos.html">Quienes Somos</a></li>
+                <li><a href="#contacto">Contacto</a></li> <!-- Enlace a la sección de contacto en el footer -->
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio">
+        <h2>Hola, bienvenido viajero</h2>
+        <p>Consulta los horarios de colectivos de la forma más sencilla y rápida posible.</p>
+        <p>Lo invito a que vea nuestra nueva flota de colectivos simples y doble piso</p>
+
+        <!-- Carrusel de Bootstrap -->
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="imagenes/Diseño sin título.png" class="d-block w-100" alt="Imagen 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="imagenes/11.png" class="d-block w-100" alt="Imagen 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="imagenes/4.png" class="d-block w-100" alt="Imagen 3">
+                </div>
+                <div class="carousel-item">
+                    <img src="imagenes/FOTO5.png" class="d-block w-100" alt="Imagen 4">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <div id="mapa">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29107.900556685392!2d-64.8790141711123!3d-24.224720164352878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x941a587a9e2eadb1%3A0x539840e1029883e3!2sTerminal%20de%20%C3%93mnibus%20de%20San%20Pedro%20de%20Jujuy%20%22Coronel%20Eustaquio%20Medina%22!5e0!3m2!1ses-419!2sar!4v1726153516522!5m2!1ses-419!2sar"
+                width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        <div class="contacto">
+            <p>&copy; 2024 ARBASTA SRL. Todos los derechos reservados.</p>
+            <a href="https://wa.me/3888617303" target="_blank" rel="noopener noreferrer">
+                <img src="imagenes/whatsapp_-_logo_negro_1.png" alt="WhatsApp" style="width: 50px; height: 30px;">
+                Chatea con nosotros
+            </a>
+        </div>
+    </footer>
+
+    <!-- Incluye Bootstrap JS y dependencias -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

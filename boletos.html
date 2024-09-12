@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horarios</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1></h1>
+        <div>
+            <img src="imagenes/logo-empresa.webp" alt="logo">
+       </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="boletos.html">Boletos</a></li>
+                <li><a href="quienes-somos.html">Quienes Somos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="boletos" class="container my-5">
+        <h2 class="mb-4">Horarios y destinos</h2>
+        <p class="mb-4">Encuentra los boletos en los horarios disponibles para viajar a tu destino dentro de la provincia de Jujuy.</p>
+        
+        <!-- Formulario de búsqueda de boletos -->
+        <form id="formulario-boletos" action="horarios.html" method="get">
+            <!-- Campo para seleccionar el origen -->
+            <div class="form-group">
+                <label for="origen">Origen:</label>
+                <select id="origen" name="origen" class="form-control" required>
+                    <option value="">Seleccione su origen</option>
+                    <option value="San Pedro">San Pedro</option>
+                    <option value="San Salvador">San Salvador</option>
+                    <option value="Ledesma">Ledesma</option>
+                </select>
+            </div>
+    
+            <!-- Campo para seleccionar el destino -->
+            <div class="form-group">
+                <label for="destino">Destino:</label>
+                <select id="destino" name="destino" class="form-control" required>
+                    <option value="">Seleccione su destino</option>
+                    <option value="San Pedro">San Pedro</option>
+                    <option value="San Salvador">San Salvador</option>
+                    <option value="Ledesma">Ledesma</option>
+                </select>
+            </div>
+    
+            <!-- Campo para seleccionar la cantidad de personas -->
+            <div class="form-group">
+                <label for="personas">Número de personas:</label>
+                <input type="number" id="personas" name="personas" class="form-control" min="1" value="1" required>
+            </div>
+    
+            <!-- Campo para seleccionar la fecha de viaje -->
+            <div class="form-group">
+                <label for="fecha">Fecha de viaje:</label>
+                <input type="date" id="fecha" name="fecha" class="form-control" required>
+            </div>
+    
+            <!-- Campo oculto para el costo total -->
+            <input type="hidden" id="costo-total" name="costo-total">
+    
+            <!-- Botón para buscar boletos -->
+            <button type="submit" class="btn btn-primary">Buscar Boletos</button>
+        </form>
+    </section>
+
+    <footer id="contacto">
+        <div id="mapa">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29107.900556685392!2d-64.8790141711123!3d-24.224720164352878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x941a587a9e2eadb1%3A0x539840e1029883e3!2sTerminal%20de%20%C3%93mnibus%20de%20San%20Pedro%20de%20Jujuy%20%22Coronel%20Eustaquio%20Medina%22!5e0!3m2!1ses-419!2sar!4v1726153516522!5m2!1ses-419!2sar"
+                width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        <div class="contacto">
+            <p>&copy; 2024 ARBASTA SRL. Todos los derechos reservados.</p>
+            <a href="https://wa.me/3888617303" target="_blank" rel="noopener noreferrer">
+                <img src="imagenes/whatsapp_-_logo_negro_1.png" alt="WhatsApp" style="width: 50px; height: 30px;">
+                Chatea con nosotros
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const origenSelect = document.getElementById('origen');
+        const destinoSelect = document.getElementById('destino');
+        const destinosOriginales = Array.from(destinoSelect.options);
+
+        // Actualizar los destinos al seleccionar un origen
+        origenSelect.addEventListener('change', function() {
+            const origenSeleccionado = this.value;
+
+            // Limpiar el campo de destino
+            destinoSelect.innerHTML = '';
+
+            // Filtrar los destinos que no coinciden con el origen seleccionado
+            destinosOriginales.forEach(option => {
+                if (option.value !== origenSeleccionado && option.value !== "") {
+                    destinoSelect.add(option);
+                }
+            });
+        });
+
+        // Datos de precios de boleto
+        const preciosBoleto = {
+            'San Pedro-San Salvador': 4800,
+            'San Pedro-Ledesma': 3900,
+            'San Salvador-San Pedro': 4800,
+            'San Salvador-Ledesma': 9200,
+            'Ledesma-San Pedro': 3900,
+            'Ledesma-San Salvador': 9200
+        };
+
+        // Calcular el costo total al enviar el formulario
+        document.getElementById('formulario-boletos').addEventListener('submit', function(event) {
+            const origen = origenSelect.value;
+            const destino = destinoSelect.value;
+            const personas = parseInt(document.getElementById('personas').value, 10);
+
+            if (origen && destino && personas > 0) {
+                const claveViaje = `${origen}-${destino}`;
+                const precio = preciosBoleto[claveViaje];
+                
+                if (precio) {
+                    const costoTotal = precio * personas;
+                    document.getElementById('costo-total').value = costoTotal;
+                } else {
+                    alert('No se pudo determinar el precio para la ruta seleccionada.');
+                    event.preventDefault(); // Previene el envío del formulario si no hay precio
+                }
+            } else {
+                alert('Por favor, complete todos los campos.');
+                event.preventDefault(); // Previene el envío del formulario si faltan campos
+            }
+        });
+    </script>
+</body>
+</html>
